@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {% block title %}
+            DataHack Summit 2026
+        {% endblock %}
+    </title>
+
+    <link rel="icon" type="image/x-icon" href="https://imgcdn.analyticsvidhya.com/favicon/dhs-fav.ico">
+
+
+    <!-- Google Font -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Base CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'dhs26/css/base.css' %}"
+    >
+
+    <!-- Header CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'dhs26/css/header.css' %}"
+    >
+
+    <!-- Navbar CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'dhs26/css/navbar.css' %}"
+    >
+
+    <!-- Footer CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'dhs26/css/footer.css' %}"
+    >
+
+    <!-- Shared page/card CSS -->
+    <link
+        rel="stylesheet"
+        href="{% static 'dhs26/css/pages.css' %}"
+    >
+
+
+    {% block extra_css %}
+    {% endblock %}
+
+</head>
+
+
+<body>
+
+    <!-- Background glow -->
+    <div class="page-glow page-glow-one"></div>
+    <div class="page-glow page-glow-two"></div>
+
+
+    <!-- HEADER -->
+    {% include "dhs26/partials/header.html" %}
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        {% block content %}
+        {% endblock %}
+
+    </main>
+
+
+    <!-- FOOTER -->
+    {% include "dhs26/partials/footer.html" %}
+
+
+    <!-- WELCOME POPUP
+         NOTE: UI only — no backend wired up. Shown once per browser
+         session, a few seconds after the first page finishes loading.
+    -->
+    {% include "dhs26/partials/lead_modal.html" with modal_id="welcomeModal" modal_title="Get DataHack Summit 2026 Updates" modal_cta="Notify Me" submit_class="emailAgenda"%}
+
+
+    <!-- Navbar JS -->
+    <script
+        src="{% static 'dhs26/js/navbar.js' %}"
+    ></script>
+
+    <!-- Lead modal JS (open/close/reset + welcome popup timer) -->
+    <script
+        src="{% static 'dhs26/js/lead-modal.js' %}"
+    ></script>
+
+
+    {% block extra_js %}
+    {% endblock %}
+
+</body>
+
+</html>

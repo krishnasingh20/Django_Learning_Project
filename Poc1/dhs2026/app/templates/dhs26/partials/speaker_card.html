@@ -1,0 +1,43 @@
+{% load static %}
+
+<a
+    href="{% url 'speaker_detail' speaker.id %}"
+    class="speaker-card"
+    data-tags="{{ speaker.session_type_slugs }}"
+>
+
+    <img
+        class="speaker-photo"
+        src="{{ speaker.image_url }}"
+        alt="{{ speaker.name }}"
+        loading="lazy"
+    >
+
+    {% if speaker.has_keynote_session %}
+        <span class="keynote-badge">Keynote</span>
+    {% endif %}
+
+
+    <div class="speaker-overlay">
+
+        <div class="speaker-name">
+            {{ speaker.name }}
+        </div>
+
+        <div class="speaker-role">
+            {{ speaker.designation }}
+        </div>
+
+        <div class="speaker-company">
+
+            <img
+                src="{{ speaker.company_img_url }}"
+                alt="{{ speaker.name }}'s company"
+            >
+
+        </div>
+
+    </div>
+
+</a>
+

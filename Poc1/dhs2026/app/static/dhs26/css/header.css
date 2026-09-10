@@ -1,0 +1,213 @@
+/* ========================================
+   HEADER
+======================================== */
+
+.site-header {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    z-index: 2000;
+
+    padding: 18px 0;
+
+    transition:
+        background 0.3s ease,
+        padding 0.3s ease;
+
+}
+
+
+/* Header after scrolling */
+
+.site-header.scrolled {
+
+    padding: 10px 0;
+
+    background:
+        rgba(5, 8, 22, 0.78);
+
+    backdrop-filter: blur(18px);
+
+    border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+/* ========================================
+   WRAPPER
+======================================== */
+
+.navbar-wrapper {
+
+    display: flex;
+
+    align-items: center;
+
+    min-height: 58px;
+
+}
+
+
+/* ========================================
+   BRAND
+======================================== */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    flex-shrink: 0;
+
+}
+
+
+.brand-logo img {
+
+    width: 175px;
+
+    height: auto;
+
+    display: block;
+
+}
+
+
+.brand-edition {
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding-left: 13px;
+
+    border-left:
+        1px solid
+        rgba(255, 255, 255, 0.2);
+
+    line-height: 1;
+
+}
+
+
+.edition-number {
+
+    color: white;
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+}
+
+
+.edition-text {
+
+    margin-top: 5px;
+
+    color: #8f9ab5;
+
+    font-size: 8px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+/* ========================================
+   MOBILE BUTTON
+======================================== */
+
+.mobile-menu-button {
+
+    display: none;
+
+    width: 44px;
+
+    height: 44px;
+
+    margin-left: auto;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.15);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.05);
+
+    cursor: pointer;
+
+    padding: 10px;
+
+}
+
+
+.mobile-menu-button span {
+
+    display: block;
+
+    height: 2px;
+
+    margin: 5px 0;
+
+    border-radius: 5px;
+
+    background: white;
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .mobile-menu-button {
+
+        display: block;
+
+    }
+
+
+    .brand-logo img {
+
+        width: 145px;
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    .brand-edition {
+
+        display: none;
+
+    }
+
+    .brand-logo img {
+
+        width: 135px;
+
+    }
+
+}

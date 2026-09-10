@@ -1,0 +1,87 @@
+{% extends "dhs26/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Sessions | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Sessions" title="Explore the Sessions" subtitle="Keynotes, power talks and hack sessions from across the AI community" %}
+
+
+<section class="light-section">
+
+    <div class="container">
+
+        <div
+            class="filter-chips"
+            data-filter-group
+            data-filter-target=".session-card"
+        >
+
+            <button
+                type="button"
+                class="filter-chip is-active"
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="keynote"
+            >
+                Keynote
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="powertalk"
+            >
+                PowerTalk
+            </button>
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="hack-session"
+            >
+                Hack Sessions
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="hack-panel"
+            >
+                Hack Panel
+            </button>
+
+        </div>
+
+        <div class="cards-grid">
+
+            {% for session in sessions %}
+                {% include "dhs26/partials/session_card.html" %}
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="{% static 'dhs26/js/filters.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends "dhs26/base.html" %}
+{% load static %}
+
+
+{% block title %}
+{{ workshop.name }} | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Workshops" title=workshop.name %}
+
+
+<section class="light-section">
+
+    <div class="container">
+
+        {% if workshop.is_sold_out %}
+
+        <div class="sold-out-banner">
+            This workshop is sold out. Explore other workshops or join the waitlist.
+        </div>
+
+        {% endif %}
+
+
+        <div class="workshop-meta-row">
+
+            <div class="detail-meta-item">
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="5" width="18" height="16" rx="2" />
+                    <path d="M16 3v4M8 3v4M3 10h18" />
+                </svg>
+
+                {{ workshop.date|date:"D, d M Y" }}
+
+            </div>
+
+
+            <div class="detail-meta-item">
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 7v5l3 3" />
+                </svg>
+
+                {{ workshop.start_time|time:"g:i A" }} &ndash; {{ workshop.end_time|time:"g:i A" }}
+
+            </div>
+
+
+            <div class="detail-meta-item">
+
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z" />
+                    <circle cx="12" cy="9" r="2.5" />
+                </svg>
+
+                {{ workshop.location }}
+
+            </div>
+
+        </div>
+
+
+        <div class="workshop-detail-layout">
+
+            <div class="workshop-detail-main">
+
+                {% if workshop.description %}
+
+                <div class="detail-subsection" style="margin-top: 0;">
+
+                    <h2>
+                        About the Workshop
+                    </h2>
+
+                    <div class="rich-text">
+                        {{ workshop.description|safe }}
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if workshop.modules.all %}
+
+                <div class="detail-subsection">
+
+                    <h2>
+                        Workshop Modules
+                    </h2>
+
+                    <div class="faq-list">
+
+                        {% for module in workshop.modules.all %}
+
+                        <details class="faq-item">
+
+                            <summary>
+                                Module {{ forloop.counter }}: {{ module.title }}
+                            </summary>
+
+                            <div class="rich-text">
+                                {{ module.description|safe }}
+                            </div>
+
+                        </details>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="workshop-detail-sidebar">
+
+                {% if workshop.instructors.all %}
+
+                <div class="workshop-sidebar-card">
+
+                    <h3>
+                        Instructor{{ workshop.instructors.all|length|pluralize }}
+                    </h3>
+
+                    <div class="workshop-instructor-list">
+
+                        {% for instructor in workshop.instructors.all %}
+
+                        <a href="{% url 'speaker_detail' instructor.id %}" class="mini-person">
+
+                            <img src="{{ instructor.image_url }}" alt="{{ instructor.name }}" loading="lazy">
+
+                            <div class="mini-person-info">
+
+                                <div class="name">
+                                    {{ instructor.name }}
+                                </div>
+
+                                <div class="role">
+                                    {{ instructor.designation }}
+                                </div>
+
+                            </div>
+
+                        </a>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="workshop-sidebar-card">
+
+                    <h3>
+                        Workshop Details
+                    </h3>
+
+                    <form class="workshop-lead-form">
+
+                        <div class="form-field">
+
+                            <label for="lead-phone">Phone no.</label>
+
+                            <input type="tel" id="lead-phone" name="phone" placeholder="Enter your phone number">
+
+                        </div>
+
+
+                        <div class="form-field">
+
+                            <label for="lead-email">Email</label>
+
+                            <input type="email" id="lead-email" name="email" placeholder="Enter your email">
+
+                        </div>
+
+
+                        <label class="form-checkbox">
+
+                            <input type="checkbox" checked>
+
+                            I agree to the
+                            <a href="/terms/" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+
+                        </label>
+
+
+                        <label class="form-checkbox">
+
+                            <input type="checkbox" checked>
+
+                            Send WhatsApp Updates
+
+                        </label>
+
+
+                        <button type="submit" class="gradient-button downloadWorkshopDetail"
+                            style="width: 100%; justify-content: center;">
+                            {% if workshop.is_sold_out %}
+                            Join the Waitlist
+                            {% else %}
+                            Download Workshop Details
+                            {% endif %}
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+    //sending worhsop detail through fetch request via mail
+    document.addEventListener("click", async (event) => {
+
+        const button = event.target.closest(".downloadWorkshopDetail");
+
+        if (!button) {
+            return;
+        }
+        event.preventDefault();
+
+        const form = button.closest("form");
+        const formData = new FormData(form);
+
+        const response = await fetch("{% url 'download_woprkshop_detail' %}", {
+            method: "POST",
+            body: formData
+        })
+    });
+
+</script>
+{% endblock %}

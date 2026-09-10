@@ -1,0 +1,121 @@
+<nav
+    class="navigation-menu"
+    id="navigationMenu"
+>
+
+
+    <!-- MOBILE HEADER -->
+
+    <div class="mobile-navigation-header">
+
+        <span>
+            Navigation
+        </span>
+
+        <button
+            id="menuClose"
+            type="button"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <!-- LINKS -->
+
+    <ul class="navbar-links">
+
+
+        <li>
+
+            <a
+                href="{% url 'home' %}#speakers"
+            >
+                Speakers
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="{% url 'home' %}#sponsors"
+            >
+                Sponsors
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="{% url 'home' %}#workshops"
+            >
+                Workshops
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="{% url 'home' %}#agenda"
+            >
+                Agenda
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="awards/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Awards
+            </a>
+
+        </li>
+
+
+        <li>
+
+            <a
+                href="{% url 'home' %}#venue"
+            >
+                Venue
+            </a>
+
+        </li>
+
+    </ul>
+
+
+    <!-- TICKET BUTTON -->
+
+    <div class="navbar-ticket">
+
+        <a
+            href="{% url 'home' %}#tickets"
+            class="nav-ticket-button"
+        >
+
+            <span>
+                Book Tickets
+            </span>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </a>
+
+    </div>
+
+</nav>

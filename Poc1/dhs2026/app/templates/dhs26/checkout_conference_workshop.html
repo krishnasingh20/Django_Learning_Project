@@ -1,0 +1,376 @@
+{% extends "dhs26/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Conference + Workshop Ticket | DataHack Summit 2026
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'dhs26/css/checkout.css' %}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Tickets" title="Conference + Workshop Ticket" subtitle="Your conference pass comes free with every workshop" %}
+
+
+<section class="content-section">
+
+    <div class="container">
+
+        <div class="checkout-layout">
+
+            <div class="checkout-main">
+
+                <!-- NOTE: UI only — Razorpay checkout hooks onto this form's submit. -->
+                <form class="workshop-lead-form" id="checkoutForm">
+
+                    <h2>
+                        Your Details
+                    </h2>
+
+                    <div class="form-field">
+                        <label for="checkout-name">Full Name</label>
+                        <input type="text" id="checkout-name" name="name" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="checkout-email">Email</label>
+                        <input type="email" id="checkout-email" name="email" placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="checkout-phone">Phone no.</label>
+                        <input type="tel" id="checkout-phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="checkout-company">Company (optional)</label>
+                        <input type="text" id="checkout-company" name="company" placeholder="Enter your company name">
+                    </div>
+
+                </form>
+
+
+                <h2 style="margin-top: 40px;">
+                    Choose Your Workshop(s)
+                </h2>
+
+                {% if workshops %}
+
+                <div class="workshop-picker" id="workshopPicker">
+
+                    {% for workshop in workshops %}
+
+                    <label class="workshop-pick-card{% if workshop.is_sold_out %} is-sold-out{% endif %}">
+
+                        <input
+                            type="checkbox"
+                            form="checkoutForm"
+                            name="workshops"
+                            value="{{ workshop.id }}"
+                            data-price="{% if workshop.price %}{{ workshop.final_price|floatformat:2 }}{% else %}0{% endif %}"
+                            {% if workshop.id == preselected_id %}checked{% endif %}
+                            {% if workshop.is_sold_out %}disabled{% endif %}
+                        >
+
+                        <div class="workshop-pick-info">
+
+                            <div class="workshop-pick-title">
+                                {{ workshop.name }}
+                            </div>
+
+                            <div class="workshop-pick-meta">
+                                {{ workshop.date|date:"d M Y" }} &bull;
+                                {{ workshop.start_time|time:"g\:i A" }} &ndash;
+                                {{ workshop.end_time|time:"g\:i A" }}
+                            </div>
+
+                            <div class="workshop-pick-price">
+                                {% if workshop.price %}
+
+                                    {% if workshop.discount %}
+                                        <span class="original-price">
+                                            ₹{{ workshop.price }}
+                                        </span>
+
+                                        <span class="final-price">
+                                            ₹{{ workshop.final_price|floatformat:2 }}
+                                        </span>
+
+                                        <span class="discount-badge">
+                                            {{ workshop.discount }}% OFF
+                                        </span>
+                                    {% else %}
+                                        <span class="final-price">
+                                            ₹{{ workshop.price }}
+                                        </span>
+                                    {% endif %}
+
+                                {% endif %}
+                            </div>
+
+                        </div>
+
+                        {% if workshop.is_sold_out %}
+
+                        <span class="workshop-pick-badge">
+                            Sold Out
+                        </span>
+
+                        {% endif %}
+
+                    </label>
+
+                    {% endfor %}
+
+                </div>
+
+                {% else %}
+
+                <div class="empty-state">
+                    Workshops will be announced soon.
+                </div>
+
+                {% endif %}
+
+
+                <button
+                    type="submit"
+                    form="checkoutForm"
+                    class="gradient-button"
+                    style="width: 100%; justify-content: center; margin-top: 30px;"
+                >
+                    Proceed to Payment
+                </button>
+
+            </div>
+
+
+            <div class="checkout-summary">
+
+                <div class="ticket-card is-featured">
+
+                    <div class="ticket-name">Conference + Workshop</div>
+
+                    <ul class="ticket-features">
+
+                        <li>Conference Ticket &mdash; <strong>FREE (included)</strong></li>
+
+                        <li id="workshopCountLine">0 workshops selected</li>
+
+                        <li id="workshopTotalLine">Total: <strong>₹0</strong></li>
+
+                    </ul>
+
+                    <p class="checkout-note">
+                        Final pricing is confirmed at payment based on the workshop(s) you select.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var picker = document.getElementById('workshopPicker');
+        var countLine = document.getElementById('workshopCountLine');
+        var totalLine = document.getElementById('workshopTotalLine');
+
+        if (!picker || !countLine) return;
+
+        function updateCount() {
+
+            var boxes = picker.querySelectorAll('input[type="checkbox"]');
+            var checked = 0;
+            var total = 0;
+
+            boxes.forEach(function (box) {
+                box.closest('.workshop-pick-card').classList.toggle('is-selected', box.checked);
+                if (box.checked) {
+                    checked++;
+                    total += parseFloat(box.dataset.price) || 0;
+                }
+            });
+
+            countLine.textContent = checked + (checked === 1 ? ' workshop selected' : ' workshops selected');
+
+            if (totalLine) {
+                total = Math.round(total * 100) / 100;
+                totalLine.innerHTML = 'Total: <strong>₹' + total.toLocaleString('en-IN', { maximumFractionDigits: 2 }) + '</strong>';
+            }
+
+        }
+
+        picker.addEventListener('change', updateCount);
+        updateCount();
+
+    });
+
+</script>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+document.getElementById("checkoutForm").addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const form = new FormData(this);
+
+        try {
+
+            // 1. Create Razorpay order
+            const response = await fetch(
+                "{% url 'create_order_workshop' %}",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "X-CSRFToken":
+                            form.get("csrfmiddlewaretoken")
+                    },
+
+                    body: form
+                }
+            );
+
+
+            // 2. Get order details from Django
+            const data = await response.json();
+
+
+            if (!response.ok) {
+
+                alert(data.error || "Unable to create order");
+
+                return;
+            }
+
+
+            // 3. Create Razorpay Checkout
+            const razorpay = new Razorpay({
+
+                key: data.key,
+
+                amount: data.amount,
+
+                currency: "INR",
+
+                order_id: data.order_id,
+
+
+                // Fill customer details
+                prefill: {
+
+                    name: form.get("name"),
+
+                    email: form.get("email"),
+
+                    contact: form.get("phone")
+
+                },
+
+
+                // 4. Called after successful payment
+                handler: async function(paymentResponse) {
+
+                    try {
+
+                        // Send payment details to Django
+                        const response = await fetch(
+                            "{% url 'handlePayment' %}",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type":
+                                        "application/json"
+                                },
+
+                                body: JSON.stringify(
+                                    paymentResponse
+                                )
+                            }
+                        );
+
+
+                        const result =
+                            await response.json();
+
+
+                        // 5. Payment result
+                        if (result.status === "success") {
+
+                            alert("Payment successful!");
+
+                        } else {
+
+                            alert(
+                                "Payment verification failed."
+                            );
+
+                        }
+
+                    } catch (error) {
+
+                        alert(
+                            "Unable to verify payment."
+                        );
+
+                    }
+
+                }
+
+            });
+
+
+            // 6. Open Razorpay Checkout
+            razorpay.open();
+
+
+        } catch (error) {
+
+            console.error(
+                "Create order error:",
+                error
+            );
+
+            alert(
+                "Something went wrong. Please try again."
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+{% endblock %}

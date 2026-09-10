@@ -1,0 +1,92 @@
+{% extends "dhs26/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    {{ session.name }} | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Sessions" title=session.name subtitle=session.type %}
+
+
+<section class="light-section">
+
+    <div class="container">
+
+        <div class="view-all-wrap" style="margin-top: 0; margin-bottom: 45px;">
+
+            <button
+                type="button"
+                class="gradient-button"
+                data-modal-open="sessionDetailsModal"
+            >
+                Download Brochure
+            </button>
+
+        </div>
+
+
+        <div class="detail-subsection" style="margin-top: 0;">
+
+            <h2>
+                Speakers
+            </h2>
+
+            <div class="cards-grid">
+
+                {% for speaker in session.speakers.all %}
+                    {% include "dhs26/partials/speaker_card.html" %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SESSION DETAILS MODAL
+     NOTE: UI only — no backend wired up yet. Submitting just closes it.
+-->
+
+{% include "dhs26/partials/lead_modal.html" with modal_id="sessionDetailsModal" modal_title="Download Brochure" modal_cta="Download Brochure" submit_class="emailAgenda" %}
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener("click", async (event) => {
+        const button = event.target.closest(".emailAgenda");
+
+        if(!button) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const form = button.closest("form");
+        const formData = new FormData(form);
+        const modal = button.closest("dialog");
+
+        try {
+            await fetch("{% url 'emailAgenda' %}", {
+                method: "POST",
+                body: formData
+            })
+        }
+        finally {
+            if(modal) {
+                modal.close();
+            }
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "dhs26/base.html" %}
+
+
+{% block title %}
+    {{ sponsor.name }} | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Sponsors" title=sponsor.name %}
+
+
+<section class="light-section">
+
+    <div class="container">
+
+        <div class="sponsor-detail-card">
+
+            <img
+                src="{{ sponsor.logo_url }}"
+                alt="{{ sponsor.name }}"
+            >
+
+            <div class="sponsor-detail-type">
+                {{ sponsor.get_type_display }}
+            </div>
+
+        </div>
+
+        <div class="view-all-wrap">
+
+            <a
+                href="{% url 'sponsors' %}"
+                class="gradient-button"
+            >
+                View All Sponsors
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

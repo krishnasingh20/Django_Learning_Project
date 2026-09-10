@@ -1,0 +1,89 @@
+{% comment %}
+    Usage: {% include "dhs26/partials/lead_modal.html" with modal_id="workshopDetailsModal" modal_title="Workshop Details" modal_cta="Download Workshop Details" %}
+    Open it from a trigger anywhere on the same page with:
+        <button type="button" data-modal-open="{{ modal_id }}">...</button>
+
+    Pass submit_class="someClass" if a page-specific script (like home.html's
+    .downloadWorkshopDetail fetch handler) needs to hook the submit button.
+{% endcomment %}
+
+<dialog id="{{ modal_id }}" class="lead-modal">
+
+    <div class="lead-modal-header">
+
+        <h2>
+            {{ modal_title }}
+        </h2>
+
+        <button
+            type="button"
+            class="lead-modal-close"
+            data-modal-close
+            aria-label="Close"
+        >
+            &times;
+        </button>
+
+    </div>
+
+
+    <form class="workshop-lead-form">
+
+        <div class="form-field">
+
+            <label for="{{ modal_id }}-phone">Phone no.</label>
+
+            <input
+                type="tel"
+                id="{{ modal_id }}-phone"
+                name="phone"
+                placeholder="Enter your phone number"
+            >
+
+        </div>
+
+
+        <div class="form-field">
+
+            <label for="{{ modal_id }}-email">Email</label>
+
+            <input
+                type="email"
+                id="{{ modal_id }}-email"
+                name="email"
+                placeholder="Enter your email"
+            >
+
+        </div>
+
+
+        <label class="form-checkbox">
+
+            <input type="checkbox" checked>
+
+            I agree to the
+            <a href="/terms/" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+
+        </label>
+
+
+        <label class="form-checkbox">
+
+            <input type="checkbox" checked>
+
+            Send WhatsApp Updates
+
+        </label>
+
+
+        <button
+            type="submit"
+            class="gradient-button{% if submit_class %} {{ submit_class }}{% endif %}"
+            style="width: 100%; justify-content: center;"
+        >
+            {{ modal_cta|default:"Submit" }}
+        </button>
+
+    </form>
+
+</dialog>

@@ -1,0 +1,27 @@
+<a
+    href="{{ jury.linkedin_url }}"
+    class="speaker-card"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+
+    <img
+        class="speaker-photo"
+        src="{{ jury.image_url }}"
+        alt="{{ jury.name }}"
+        loading="lazy"
+    >
+
+    <div class="speaker-overlay">
+
+        <div class="speaker-name">
+            {{ jury.name }}
+        </div>
+
+        <div class="speaker-role">
+            {{ jury.designation }}, {{ jury.company_name }}
+        </div>
+
+    </div>
+
+</a>

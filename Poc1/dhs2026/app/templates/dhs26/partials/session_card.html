@@ -1,0 +1,68 @@
+{% load static %}
+
+<a
+    href="{% url 'session_detail' session.id %}"
+    class="session-card"
+    data-tags="{{ session.type|slugify }}"
+>
+
+    <div class="session-thumb">
+
+        {% if session.image %}
+
+        <img
+            class="session-thumb-img"
+            src="{% static 'image/' %}{{ session.image }}"
+            alt="{{ session.name }}"
+            loading="lazy"
+        >
+
+        {% endif %}
+
+        <span class="type-badge tag-{{ session.type|slugify }}">
+            {{ session.type }}
+        </span>
+
+    </div>
+
+
+    <div class="session-body">
+
+        <div class="session-title">
+            {{ session.name }}
+        </div>
+
+
+        <div class="session-speakers">
+
+            {% with sp=session.speakers.first %}
+
+            <div class="mini-person">
+
+                <img
+                    src="{{ sp.image_url }}"
+                    alt="{{ sp.name }}"
+                    loading="lazy"
+                >
+
+                <div class="mini-person-info">
+
+                    <div class="name">
+                        {{ sp.name }}
+                    </div>
+
+                    <div class="role">
+                        {{ sp.designation }}
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endwith %}
+
+        </div>
+
+    </div>
+
+</a>

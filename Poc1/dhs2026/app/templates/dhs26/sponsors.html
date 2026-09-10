@@ -1,0 +1,54 @@
+{% extends "dhs26/base.html" %}
+
+
+{% block title %}
+    Sponsors | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Sponsors" title="Our Sponsors" subtitle="Proudly supported by the world's leading AI organizations." %}
+
+
+<section class="light-section">
+
+    <div class="container">
+
+        {% if sponsors %}
+
+        {% for label, group in sponsors.items %}
+
+        <div class="sponsor-tier-group">
+
+            <p class="sponsor-tier-label">
+                {{ label }}
+            </p>
+
+            <div class="sponsor-grid">
+
+                {% for sponsor in group %}
+                    {% include "dhs26/partials/sponsor_tile.html" %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+
+        <div class="empty-state">
+            Sponsors will be announced soon.
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+{% endblock %}

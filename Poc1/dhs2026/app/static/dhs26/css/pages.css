@@ -1,0 +1,1960 @@
+/* ========================================
+   LIGHT-SECTION TOKENS
+======================================== */
+
+:root {
+
+    --surface-light: #f3f7fd;
+
+    --surface-card: #ffffff;
+
+    --text-dark: #10142a;
+
+    --text-dark-muted: #5b6478;
+
+    --border-onwhite: rgba(16, 20, 42, 0.08);
+
+}
+
+
+/* ========================================
+   PAGE BANNER (dark strip under fixed nav)
+======================================== */
+
+.page-banner {
+
+    padding: 160px 0 70px;
+
+    background:
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(91, 92, 255, 0.18),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(0, 217, 255, 0.12),
+            transparent 45%
+        ),
+
+        var(--bg-dark);
+
+    text-align: center;
+
+}
+
+
+.page-banner-eyebrow {
+
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    color: #8f9ab5;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+.page-banner-eyebrow:hover {
+    color: white;
+}
+
+
+.page-banner h1 {
+
+    margin-bottom: 14px;
+
+    font-size: clamp(34px, 5vw, 54px);
+
+    font-weight: 700;
+
+}
+
+
+.page-banner p {
+
+    margin: 0 auto;
+
+    max-width: 560px;
+
+    color: #aab3ca;
+
+    font-size: 17px;
+
+}
+
+
+/* ========================================
+   LIGHT SECTION WRAPPER
+======================================== */
+
+.light-section {
+
+    padding: 80px 0;
+
+    background: var(--surface-light);
+
+    color: var(--text-dark);
+
+}
+
+
+.light-section + .light-section {
+
+    padding-top: 0;
+
+    border-top: 1px solid var(--border-onwhite);
+
+}
+
+
+/* ========================================
+   SECTION HEADING (reused on home + pages)
+======================================== */
+
+.section-heading {
+
+    margin-bottom: 45px;
+
+    text-align: center;
+
+}
+
+
+.section-heading h2 {
+
+    margin-bottom: 10px;
+
+    font-size: clamp(30px, 4vw, 42px);
+
+    font-weight: 700;
+
+}
+
+
+.content-section .section-heading h2 {
+    color: var(--text-white);
+}
+
+
+.light-section .section-heading h2 {
+    color: var(--text-dark);
+}
+
+
+.section-heading p {
+    font-size: 16px;
+}
+
+
+.content-section .section-heading p {
+    color: var(--text-light);
+}
+
+
+.light-section .section-heading p {
+    color: var(--text-dark-muted);
+}
+
+
+.view-all-wrap {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 45px;
+
+}
+
+
+/* ========================================
+   FILTER CHIPS
+======================================== */
+
+.filter-chips {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 45px;
+
+}
+
+
+.filter-chip {
+
+    padding: 9px 20px;
+
+    border: 1px solid var(--border-onwhite);
+
+    border-radius: 50px;
+
+    background: var(--surface-card);
+
+    color: var(--text-dark-muted);
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+}
+
+
+.filter-chip:hover {
+
+    border-color: var(--primary);
+
+    color: var(--text-dark);
+
+}
+
+
+.filter-chip.is-active {
+
+    border-color: transparent;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: white;
+
+}
+
+
+.is-hidden {
+    display: none !important;
+}
+
+
+/* ========================================
+   CARDS GRID
+======================================== */
+
+.cards-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(220px, 1fr));
+
+    gap: 22px;
+
+}
+
+
+/* ========================================
+   SPEAKER CARD
+======================================== */
+
+.speaker-card {
+
+    position: relative;
+
+    display: block;
+
+    aspect-ratio: 3 / 4;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: var(--bg-dark-secondary);
+
+    box-shadow: 0 10px 30px rgba(16, 20, 42, 0.08);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+.speaker-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 20px 45px rgba(16, 20, 42, 0.16);
+
+}
+
+.keynote-badge {
+
+    position: absolute;
+
+    top: 15px;
+
+    left: 15px;
+
+    z-index: 10;
+
+    padding: 6px 14px;
+
+    border-radius: 50px;
+
+    background: #d92b4b;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+}
+
+
+
+.speaker-photo {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.speaker-overlay {
+
+    position: absolute;
+
+    left: 0;
+
+    right: 0;
+
+    bottom: 0;
+
+    padding: 45px 16px 16px;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(5, 8, 22, 0.92)
+        );
+
+    color: white;
+
+}
+
+
+.speaker-name {
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+}
+
+
+.speaker-role {
+
+    margin-top: 4px;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 12.5px;
+
+    line-height: 1.4;
+
+}
+
+.speaker-company {
+    margin-top: 10px;
+    width: 120px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.speaker-company img {
+    width: auto;
+    height: 30px;
+    max-width: 120px;
+    object-fit: contain;
+    object-position: left;
+    display: block;
+}
+
+
+
+/* ========================================
+   SESSION CARD
+======================================== */
+
+.session-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: var(--surface-card);
+
+    border: 1px solid var(--border-onwhite);
+
+    box-shadow: 0 10px 30px rgba(16, 20, 42, 0.06);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+.session-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 20px 45px rgba(16, 20, 42, 0.12);
+
+}
+
+
+.session-thumb {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    aspect-ratio: 16 / 9;
+
+    padding: 16px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+}
+
+
+.session-thumb-img {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.type-badge {
+
+    position: relative;
+
+    z-index: 1;
+
+    padding: 6px 14px;
+
+    border-radius: 50px;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.3px;
+
+}
+
+
+.type-badge.tag-keynote { background: #d92b4b; }
+.type-badge.tag-powertalk { background: #0e9f8e; }
+.type-badge.tag-hack-panel { background: #7c4dff; }
+.type-badge.tag-hack-session { background: #ec7a13; }
+
+
+.session-body {
+
+    padding: 20px;
+
+}
+
+
+.session-title {
+
+    margin-bottom: 16px;
+
+    color: var(--text-dark);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+}
+
+
+.session-speakers {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+.mini-person {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.mini-person img {
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    flex-shrink: 0;
+
+}
+
+
+.mini-person-info .name {
+
+    color: var(--text-dark);
+
+    font-size: 13.5px;
+
+    font-weight: 600;
+
+}
+
+
+.mini-person-info .role {
+
+    margin-top: 2px;
+
+    color: var(--text-dark-muted);
+
+    font-size: 12px;
+
+    line-height: 1.3;
+
+}
+
+
+/* ========================================
+   SPONSOR TILE
+======================================== */
+
+.sponsor-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(200px, 1fr));
+
+    gap: 18px;
+
+}
+
+
+.sponsor-tile {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    height: 110px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border-onwhite);
+
+    border-radius: 14px;
+
+    background: var(--surface-card);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+.sponsor-tile:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow: 0 15px 35px rgba(16, 20, 42, 0.1);
+
+}
+
+
+.sponsor-tile img {
+
+    max-width: 100%;
+
+    max-height: 100%;
+
+    object-fit: contain;
+
+}
+
+
+.sponsor-tier-group {
+
+    margin-bottom: 45px;
+
+}
+
+
+.sponsor-tier-group:last-child {
+    margin-bottom: 0;
+}
+
+
+.sponsor-tier-label {
+
+    margin-bottom: 18px;
+
+    color: var(--text-dark-muted);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* ========================================
+   WORKSHOP CARD
+======================================== */
+
+.workshop-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    overflow: hidden;
+
+    border-radius: 16px;
+
+    background: var(--surface-card);
+
+    border: 1px solid var(--border-onwhite);
+
+    box-shadow: 0 10px 30px rgba(16, 20, 42, 0.06);
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+.workshop-card:hover {
+
+    transform: translateY(-6px);
+
+    box-shadow: 0 20px 45px rgba(16, 20, 42, 0.12);
+
+}
+
+
+.workshop-card-link {
+
+    display: flex;
+
+    flex-direction: column;
+
+    color: inherit;
+
+    text-decoration: none;
+
+}
+
+
+.workshop-card-footer {
+
+    padding: 0 20px 20px;
+
+}
+
+
+.workshop-buy-btn {
+
+    width: 100%;
+
+    justify-content: center;
+
+    padding: 12px 20px;
+
+    font-size: 14px;
+
+}
+
+
+.workshop-buy-disabled {
+
+    display: block;
+
+    padding: 12px 20px;
+
+    border-radius: 50px;
+
+    background: var(--surface-light);
+
+    color: var(--text-dark-muted);
+
+    text-align: center;
+
+    font-weight: 700;
+
+    font-size: 14px;
+
+}
+
+
+.workshop-thumb {
+
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    gap: 4px;
+
+    aspect-ratio: 16 / 9;
+
+    padding: 20px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1c2340,
+            #0a1025
+        );
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.workshop-thumb-img {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+}
+
+
+.workshop-thumb::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(10, 16, 37, 0.1),
+            rgba(10, 16, 37, 0.85)
+        );
+
+}
+
+
+.workshop-thumb span {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* ============ SOLD OUT STAMP ============ */
+
+.sold-out-stamp {
+
+    position: absolute;
+
+    top: 18px;
+
+    right: -36px;
+
+    z-index: 3;
+
+    width: 150px;
+
+    padding: 6px 0;
+
+    transform: rotate(35deg);
+
+    background: #d92b4b;
+
+    color: white;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    text-transform: uppercase;
+
+    text-align: center;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+
+}
+
+
+.workshop-card.is-sold-out .workshop-thumb-img {
+
+    filter: grayscale(70%);
+
+    opacity: 0.6;
+
+}
+
+
+.sold-out-banner {
+
+    margin-bottom: 30px;
+
+    padding: 14px 20px;
+
+    border-radius: 12px;
+
+    background: rgba(217, 43, 75, 0.08);
+
+    border: 1px solid rgba(217, 43, 75, 0.3);
+
+    color: #d92b4b;
+
+    font-weight: 600;
+
+    font-size: 14px;
+
+}
+
+
+.workshop-body {
+
+    padding: 20px;
+
+}
+
+
+.workshop-title {
+
+    margin-bottom: 12px;
+
+    color: var(--text-dark);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    line-height: 1.35;
+
+}
+
+
+.workshop-meta {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 16px;
+
+    color: var(--text-dark-muted);
+
+    font-size: 13px;
+
+}
+
+
+.workshop-meta svg {
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+}
+
+
+.workshop-instructors {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    padding-top: 16px;
+
+    border-top: 1px solid var(--border-onwhite);
+
+}
+
+
+/* ========================================
+   DETAIL PAGES
+======================================== */
+
+.session-detail-image {
+
+    width: 100%;
+
+    max-height: 420px;
+
+    margin-bottom: 40px;
+
+    border-radius: 20px;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.workshop-detail-image {
+
+    width: 100%;
+
+    max-height: 420px;
+
+    margin-bottom: 40px;
+
+    border-radius: 20px;
+
+    object-fit: cover;
+
+    display: block;
+
+}
+
+
+.workshop-detail-image.is-sold-out {
+
+    filter: grayscale(70%);
+
+    opacity: 0.7;
+
+}
+
+
+.detail-profile {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 40px;
+
+    align-items: flex-start;
+
+}
+
+
+.detail-photo {
+
+    flex-shrink: 0;
+
+    width: 220px;
+
+    height: 220px;
+
+    border-radius: 20px;
+
+    object-fit: cover;
+
+    box-shadow: 0 20px 45px rgba(16, 20, 42, 0.12);
+
+}
+
+
+.detail-info {
+    flex: 1;
+    min-width: 260px;
+}
+
+
+.detail-info h1 {
+
+    margin-bottom: 8px;
+
+    color: var(--text-dark);
+
+    font-size: clamp(26px, 3.5vw, 36px);
+
+}
+
+
+.detail-designation {
+
+    margin-bottom: 16px;
+
+    color: var(--text-dark-muted);
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+}
+
+
+.detail-company-logo {
+
+    height: 26px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.detail-company-logo img {
+
+    height: 100%;
+
+    object-fit: contain;
+
+}
+
+
+.detail-linkedin {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 20px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.detail-meta-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-top: 4px;
+
+}
+
+
+.detail-meta-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: var(--text-dark-muted);
+
+    font-size: 15px;
+
+}
+
+
+.detail-meta-item svg {
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+
+}
+
+
+.detail-subsection {
+    margin-top: 60px;
+}
+
+
+.detail-subsection h2 {
+
+    margin-bottom: 25px;
+
+    color: var(--text-dark);
+
+    font-size: 24px;
+
+    font-weight: 700;
+
+}
+
+
+.sponsor-detail-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 22px;
+
+    max-width: 420px;
+
+    margin: 0 auto;
+
+    padding: 50px 30px;
+
+    border-radius: 20px;
+
+    background: var(--surface-card);
+
+    border: 1px solid var(--border-onwhite);
+
+    text-align: center;
+
+}
+
+
+.sponsor-detail-card img {
+
+    max-width: 220px;
+
+    max-height: 90px;
+
+    object-fit: contain;
+
+}
+
+
+.sponsor-detail-type {
+
+    padding: 6px 16px;
+
+    border-radius: 50px;
+
+    background: var(--surface-light);
+
+    color: var(--text-dark-muted);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+
+}
+
+
+.empty-state {
+
+    padding: 60px 0;
+
+    color: var(--text-dark-muted);
+
+    text-align: center;
+
+}
+
+
+/* ========================================
+   AWARD CATEGORIES / PROCESS (reused for both)
+======================================== */
+
+.category-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
+    gap: 22px;
+
+}
+
+
+.category-card {
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    background: var(--surface-card);
+
+    border: 1px solid var(--border-onwhite);
+
+    box-shadow: 0 10px 30px rgba(16, 20, 42, 0.06);
+
+}
+
+
+.category-card h3 {
+
+    margin-bottom: 10px;
+
+    color: var(--text-dark);
+
+    font-size: 18px;
+
+}
+
+
+.category-card p {
+
+    color: var(--text-dark-muted);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+.process-num {
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--primary);
+
+    font-family: "Space Grotesk", sans-serif;
+
+    font-size: 26px;
+
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   SPONSOR STRIP (small "sponsored by" line)
+======================================== */
+
+.award-sponsor-strip {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    margin-top: 22px;
+
+    color: var(--text-dark-muted);
+
+    font-size: 13px;
+
+}
+
+
+.award-sponsor-strip img {
+
+    height: 24px;
+
+}
+
+
+/* ========================================
+   ACCORDION (FAQ / Workshop Modules)
+   Structural rules here; colors vary by
+   the .content-section (dark) vs
+   .light-section (light) ancestor.
+======================================== */
+
+.faq-list h3 {
+
+    margin-bottom: 18px;
+
+    font-size: 19px;
+
+}
+
+
+.faq-item {
+
+    padding: 18px 0;
+
+}
+
+
+.faq-item summary {
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    font-size: 15px;
+
+    list-style: none;
+
+}
+
+
+.faq-item summary::-webkit-details-marker {
+
+    display: none;
+
+}
+
+
+.faq-item summary::before {
+
+    content: "+";
+
+    display: inline-block;
+
+    width: 18px;
+
+    color: var(--secondary);
+
+    font-weight: 700;
+
+}
+
+
+.faq-item[open] summary::before {
+
+    content: "\2212";
+
+}
+
+
+.faq-item p,
+.faq-item ul {
+
+    margin: 12px 0 0 18px;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+}
+
+
+.faq-item ul {
+
+    padding-left: 18px;
+
+}
+
+
+.content-section .faq-item {
+
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+}
+
+
+.content-section .faq-item:last-child {
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+}
+
+
+.content-section .faq-item p,
+.content-section .faq-item ul {
+
+    color: #8f9ab5;
+
+}
+
+
+.light-section .faq-item {
+
+    border-top: 1px solid var(--border-onwhite);
+
+}
+
+
+.light-section .faq-item:last-child {
+
+    border-bottom: 1px solid var(--border-onwhite);
+
+}
+
+
+.light-section .faq-item p,
+.light-section .faq-item ul {
+
+    color: var(--text-dark-muted);
+
+}
+
+
+/* ========================================
+   RICH TEXT (workshop description / module body)
+======================================== */
+
+.rich-text {
+
+    color: var(--text-dark-muted);
+
+    line-height: 1.8;
+
+}
+
+
+.rich-text p {
+
+    margin-bottom: 16px;
+
+}
+
+
+.rich-text p:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.rich-text ul {
+
+    margin: 0 0 16px 20px;
+
+}
+
+
+.rich-text li {
+
+    margin-bottom: 8px;
+
+}
+
+
+.rich-text strong {
+
+    color: var(--text-dark);
+
+    font-weight: 700;
+
+}
+
+
+/* ========================================
+   WORKSHOP DETAIL LAYOUT
+======================================== */
+
+.workshop-meta-row {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 24px;
+
+    margin-bottom: 40px;
+
+    padding-bottom: 30px;
+
+    border-bottom: 1px solid var(--border-onwhite);
+
+}
+
+
+.workshop-detail-layout {
+
+    display: grid;
+
+    grid-template-columns: 1.8fr 1fr;
+
+    gap: 50px;
+
+    align-items: start;
+
+}
+
+
+.workshop-detail-sidebar {
+
+    position: sticky;
+
+    top: 100px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+.workshop-sidebar-card {
+
+    padding: 26px;
+
+    border-radius: 18px;
+
+    background: var(--surface-card);
+
+    border: 1px solid var(--border-onwhite);
+
+    box-shadow: 0 10px 30px rgba(16, 20, 42, 0.06);
+
+}
+
+
+.workshop-sidebar-card h3 {
+
+    margin-bottom: 18px;
+
+    color: var(--text-dark);
+
+    font-size: 18px;
+
+}
+
+
+.workshop-instructor-list {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 16px;
+
+}
+
+
+/* ============ WORKSHOP LEAD FORM ============ */
+
+.workshop-lead-form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+
+.form-field {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+}
+
+
+.form-field label {
+
+    color: var(--text-dark);
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+/* Forms placed directly on a dark .content-section (e.g. checkout pages),
+   as opposed to inside a white card like .lead-modal, need light text. */
+.content-section .form-field label {
+
+    color: rgba(255, 255, 255, 0.85);
+
+}
+
+
+.content-section .form-checkbox {
+
+    color: #9ba6c0;
+
+}
+
+
+.form-field input {
+
+    padding: 12px 14px;
+
+    border-radius: 10px;
+
+    border: 1px solid var(--border-onwhite);
+
+    background: var(--surface-light);
+
+    color: var(--text-dark);
+
+    font-size: 14px;
+
+    font-family: inherit;
+
+}
+
+
+.form-field input:focus {
+
+    outline: none;
+
+    border-color: var(--primary);
+
+}
+
+
+.form-checkbox {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    color: var(--text-dark-muted);
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+.form-checkbox input {
+
+    margin-top: 3px;
+
+}
+
+
+.form-checkbox a {
+
+    color: var(--primary);
+
+    text-decoration: underline;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .workshop-detail-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .workshop-detail-sidebar {
+
+        position: static;
+
+    }
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .detail-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .detail-meta-item {
+        justify-content: center;
+    }
+
+}
+
+
+/* ========================================
+   LEAD MODAL (Workshop/Session Details, welcome popup)
+======================================== */
+
+.lead-modal {
+
+    margin: auto;
+
+    width: min(440px, 92%);
+
+    padding: 32px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background: var(--surface-card);
+
+    box-shadow: 0 30px 80px rgba(5, 8, 22, 0.45);
+
+}
+
+
+.lead-modal::backdrop {
+
+    background: rgba(5, 8, 22, 0.7);
+
+    backdrop-filter: blur(4px);
+
+}
+
+
+.lead-modal-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 24px;
+
+}
+
+
+.lead-modal-header h2 {
+
+    color: var(--text-dark);
+
+    font-size: 22px;
+
+}
+
+
+.lead-modal-close {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    border: 1px solid var(--border-onwhite);
+
+    background: var(--surface-light);
+
+    color: var(--text-dark-muted);
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+}
+
+
+.lead-modal-close:hover {
+
+    color: var(--text-dark);
+
+}
+
+
+/* ========================================
+   TICKET CARD (home tickets section + checkout summary)
+======================================== */
+
+.tickets-layout {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    gap: 26px;
+
+    margin-top: 40px;
+
+}
+
+.ticket-card {
+
+    padding: 34px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    background: rgba(255,255,255,0.03);
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+.ticket-card.is-featured {
+
+    border-color: rgba(0,217,255,0.5);
+
+    background:
+        linear-gradient(
+            160deg,
+            rgba(100,114,255,0.08),
+            rgba(0,217,255,0.05)
+        );
+
+}
+
+.ticket-name {
+
+    color: #9ba6c0;
+
+    font-size: 14px;
+
+    margin-bottom: 6px;
+
+}
+
+.ticket-price {
+
+    font-size: 40px;
+
+    font-weight: 700;
+
+    margin-bottom: 20px;
+
+    background: linear-gradient(100deg, #6472ff, #00d9ff 55%, #23e5b6);
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+
+}
+
+.ticket-features {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0 0 26px;
+
+    flex-grow: 1;
+
+}
+
+.ticket-features li {
+
+    color: #c3cadf;
+
+    font-size: 14px;
+
+    padding: 8px 0;
+
+    border-top: 1px solid rgba(255,255,255,0.06);
+
+}
+
+.ticket-features li:first-child {
+
+    border-top: none;
+
+}

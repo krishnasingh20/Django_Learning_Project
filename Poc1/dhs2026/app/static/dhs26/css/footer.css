@@ -1,0 +1,315 @@
+/* ========================================
+   FOOTER
+======================================== */
+
+.site-footer {
+
+    position: relative;
+
+    margin-top: 100px;
+
+    padding: 80px 0 30px;
+
+    background:
+
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(91, 92, 255, 0.14),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 50%,
+            rgba(0, 217, 255, 0.08),
+            transparent 30%
+        ),
+
+        #070b1d;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+/* ========================================
+   MAIN
+======================================== */
+
+.footer-main {
+
+    display: grid;
+
+    grid-template-columns:
+        2fr
+        1fr
+        1fr
+        1.2fr;
+
+    gap: 60px;
+
+    padding-bottom: 60px;
+
+}
+
+
+/* ========================================
+   BRAND
+======================================== */
+
+.footer-brand-logo img {
+
+    width: 220px;
+
+    max-width: 100%;
+
+}
+
+
+.footer-brand p {
+
+    max-width: 380px;
+
+    margin: 25px 0;
+
+    color: #8f9ab5;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+}
+
+
+.footer-cta {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: white;
+
+    font-weight: 700;
+
+    transition: all 0.3s ease;
+
+}
+
+
+.footer-cta span {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+
+    height: 30px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b5cff,
+            #00d9ff
+        );
+
+    transition: transform 0.3s ease;
+
+}
+
+
+.footer-cta:hover {
+
+    color: white;
+
+}
+
+
+.footer-cta:hover span {
+
+    transform: translateX(5px);
+
+}
+
+
+/* ========================================
+   FOOTER COLUMNS
+======================================== */
+
+.footer-column {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+}
+
+
+.footer-column h3 {
+
+    margin-bottom: 10px;
+
+    color: white;
+
+    font-size: 17px;
+
+}
+
+
+.footer-column a {
+
+    width: fit-content;
+
+    color: #8f9ab5;
+
+    font-size: 14px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+.footer-column a:hover {
+
+    color: white;
+
+    transform: translateX(4px);
+
+}
+
+
+/* ========================================
+   SOCIAL
+======================================== */
+
+.footer-socials {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+}
+
+
+/* ========================================
+   BOTTOM
+======================================== */
+
+.footer-bottom {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.08);
+
+}
+
+
+.footer-links {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 20px;
+
+}
+
+
+.footer-links a {
+
+    color: #69748f;
+
+    font-size: 12px;
+
+    transition: color 0.3s ease;
+
+}
+
+
+.footer-links a:hover {
+
+    color: white;
+
+}
+
+
+.footer-bottom p {
+
+    margin: 0;
+
+    color: #69748f;
+
+    font-size: 12px;
+
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 900px) {
+
+    .footer-main {
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 45px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .site-footer {
+
+        margin-top: 60px;
+
+        padding-top: 60px;
+
+    }
+
+
+    .footer-main {
+
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+    }
+
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}

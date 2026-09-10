@@ -1,0 +1,100 @@
+{% extends "dhs26/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Speakers | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Speakers" title="Meet the Speakers" subtitle="Learn from the Best in AI" %}
+
+
+<section class="light-section">
+
+    <div class="container">
+
+        <div
+            class="filter-chips"
+            data-filter-group
+            data-filter-target=".speaker-card"
+        >
+
+            <button
+                type="button"
+                class="filter-chip is-active"
+                data-filter="all"
+            >
+                All
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="keynote"
+            >
+                Keynote
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="powertalk"
+            >
+                PowerTalk
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="hack-session"
+            >
+                Hack Sessions
+            </button>
+
+            <button
+                type="button"
+                class="filter-chip"
+                data-filter="hack-panel"
+            >
+                Hack Panel
+            </button>
+
+        </div>
+
+
+        {% if speakers %}
+
+        <div class="cards-grid">
+
+            {% for speaker in speakers %}
+                {% include "dhs26/partials/speaker_card.html" %}
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+            Speakers will be announced soon.
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script src="{% static 'dhs26/js/filters.js' %}"></script>
+
+{% endblock %}

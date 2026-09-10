@@ -1,0 +1,118 @@
+{% extends "dhs26/base.html" %}
+
+
+{% block title %}
+    {{ speaker.name }} | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Speakers" title=speaker.name subtitle=speaker.designation %}
+
+
+<section class="light-section">
+
+    <div class="container">
+
+        <div class="detail-profile">
+
+            <img
+                class="detail-photo"
+                src="{{ speaker.image_url }}"
+                alt="{{ speaker.name }}"
+            >
+
+
+            <div class="detail-info">
+
+                <h1>
+                    {{ speaker.name }}
+                </h1>
+
+
+                <p class="detail-designation">
+                    {{ speaker.designation }}
+                </p>
+
+
+                {% if speaker.company_img_url %}
+
+                <div class="detail-company-logo">
+
+                    <img
+                        src="{{ speaker.company_img_url }}"
+                        alt=""
+                    >
+
+                </div>
+
+                {% endif %}
+
+
+                {% if speaker.linkedin_url %}
+
+                <a
+                    href="{{ speaker.linkedin_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="detail-linkedin"
+                >
+                    View LinkedIn Profile →
+                </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        {% if sessions %}
+
+        <div class="detail-subsection">
+
+            <h2>
+                Sessions
+            </h2>
+
+            <div class="cards-grid">
+
+                {% for session in sessions %}
+                    {% include "dhs26/partials/session_card.html" %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        {% if related_workshops %}
+
+        <div class="detail-subsection">
+
+            <h2>
+                Workshops
+            </h2>
+
+            <div class="cards-grid">
+
+                {% for workshop in related_workshops %}
+                    {% include "dhs26/partials/workshop_card.html" %}
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+{% endblock %}

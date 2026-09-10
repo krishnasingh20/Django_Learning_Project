@@ -1,0 +1,66 @@
+{% load static %}
+
+<header
+    class="site-header"
+    id="siteHeader"
+>
+
+    <div class="container">
+
+        <div class="navbar-wrapper">
+
+
+            <!-- BRAND -->
+            <a
+                href="{% url 'home' %}"
+                class="brand"
+            >
+
+                <div class="brand-logo">
+
+                    <img
+                        src="https://imgcdn.analyticsvidhya.com/dhs2026/dhs-logo-white.svg"
+                        alt="DataHack Summit 2026"
+                    >
+
+                </div>
+
+
+                <div class="brand-edition">
+
+                    <span class="edition-number">
+                        7th
+                    </span>
+
+                    <span class="edition-text">
+                        EDITION
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+            {% include "dhs26/partials/navbar.html" %}
+
+
+            <!-- MOBILE MENU BUTTON -->
+            <button
+                class="mobile-menu-button"
+                id="menuToggle"
+                type="button"
+                aria-label="Open menu"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>

@@ -1,0 +1,223 @@
+{% extends "dhs26/base.html" %}
+{% load static %}
+
+
+{% block title %}
+    Conference Ticket | DataHack Summit 2026
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link
+    rel="stylesheet"
+    href="{% static 'dhs26/css/checkout.css' %}"
+>
+
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Tickets" title="Conference Ticket" subtitle="You're one step away from DataHack Summit 2026" %}
+
+
+<section class="content-section">
+
+    <div class="container">
+
+        <div class="checkout-layout">
+
+            <div class="checkout-main">
+
+                <h2>
+                    Your Details
+                </h2>
+
+                <!-- NOTE: UI only — Razorpay checkout hooks onto this form's submit. -->
+                <form class="workshop-lead-form" id="checkoutForm" method="post" action="">
+
+                    {% csrf_token %}
+
+                    <div class="form-field">
+                        <label for="checkout-name">Full Name</label>
+                        <input type="text" id="checkout-name" name="name" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="checkout-email">Email</label>
+                        <input type="email" id="checkout-email" name="email" placeholder="Enter your email">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="checkout-phone">Phone no.</label>
+                        <input type="tel" id="checkout-phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="form-field">
+                        <label for="checkout-company">Company (optional)</label>
+                        <input type="text" id="checkout-company" name="company" placeholder="Enter your company name">
+                    </div>
+
+                </form>
+
+                <button
+                    type="submit"
+                    form="checkoutForm"
+                    class="gradient-button"
+                    style="width: 100%; justify-content: center; margin-top: 24px;"
+                >
+                    Proceed to Payment
+                </button>
+
+            </div>
+
+
+            <div class="checkout-summary">
+
+                <div class="ticket-card">
+
+                    <div class="ticket-name">Conference Only &bull; 05 - 07 August</div>
+
+                    <div class="ticket-price">₹21,999</div>
+
+                    <ul class="ticket-features">
+                        <li>Access to 75+ AI sessions</li>
+                        <li>Access to AI Exhibition</li>
+                        <li>Lunch (all 3 days)</li>
+                        <li>Delegate Kit</li>
+                        <li>Session Recordings</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+document.getElementById("checkoutForm").addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        const form = new FormData(this);
+
+        try {
+
+            // 1. Create Razorpay order
+            const response = await fetch(
+                "{% url 'create_order_conference' %}",
+                {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken":
+                            form.get("csrfmiddlewaretoken")
+                    },
+                    body: form
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.error || "Unable to create order");
+                return;
+            }
+
+
+            // 2. Open Razorpay Checkout
+            const razorpay = new Razorpay({
+
+                key: data.key,
+
+                amount: data.amount,
+
+                currency: "INR",
+
+                order_id: data.order_id,
+
+
+                prefill: {
+
+                    name: form.get("name"),
+
+                    email: form.get("email"),
+
+                    contact: form.get("phone")
+
+                },
+
+
+                handler: async function(paymentResponse) {
+
+                    // 3. Send payment details to Django
+                    const response = await fetch(
+                        "{% url 'handlePayment' %}",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify(
+                                paymentResponse
+                            )
+                        }
+                    );
+
+
+                    const result =
+                        await response.json();
+
+
+                    // 4. Payment result
+                    if (result.status === "success") {
+
+                        alert("Payment successful!");
+
+                    } else {
+
+                        alert("Payment verification failed.");
+
+                    }
+
+                }
+
+            });
+
+
+            razorpay.open();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Something went wrong. Please try again."
+            );
+
+        }
+
+    }
+);
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,170 @@
+{% extends "dhs26/base.html" %}
+
+
+{% block title %}
+    AV Luminary Awards | DataHack Summit 2026
+{% endblock %}
+
+
+{% block content %}
+
+
+{% include "dhs26/partials/page_banner.html" with eyebrow="Awards" title="AV Luminary Awards" subtitle="Celebrating innovators in AI who are shaping the future. Nominations for this edition are now closed." %}
+
+
+<!-- AWARD CATEGORIES -->
+
+<section class="light-section">
+
+    <div class="container">
+
+        <div class="award-sponsor-strip">
+            <span>Sponsored by</span>
+            <img src="https://imgcdn.analyticsvidhya.com/dhs2026/awards/sponsored-by-domyn.png" alt="Domyn">
+        </div>
+
+
+        <div class="section-heading">
+
+            <h2>
+                Award Categories
+            </h2>
+
+            <p>
+                Three ways we recognize brilliance in AI
+            </p>
+
+        </div>
+
+
+        <div class="category-grid">
+
+            <div class="category-card">
+                <h3>Top 7 AI Transformation Leaders</h3>
+                <p>Honoring leaders driving AI adoption across industries &mdash; empowering teams, embedding AI into workflows, and shaping how AI is used today and evolves tomorrow.</p>
+            </div>
+
+            <div class="category-card">
+                <h3>Top 7 AI Scientists</h3>
+                <p>Recognizing brilliant minds behind AI breakthroughs solving real-world problems and setting new standards in innovation and technical excellence.</p>
+            </div>
+
+            <div class="category-card">
+                <h3>Top 7 AI Community Contributors</h3>
+                <p>Celebrating those who go above and beyond to share knowledge, support others, and grow the AI community for a stronger future.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- JURY -->
+
+<section id="jury" class="light-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                AV Luminary Award Jury
+            </h2>
+
+            <p>
+                Meet the panel evaluating this year's nominations
+            </p>
+
+        </div>
+
+
+        {% if jury %}
+
+        <div class="cards-grid">
+
+            {% for member in jury %}
+                {% include "dhs26/partials/jury_card.html" with jury=member %}
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="empty-state">
+            The jury panel will be announced soon.
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+
+<!-- NOMINATION & SELECTION PROCESS
+     NOTE: static structural copy — no Process model exists in views.py.
+-->
+
+<section class="light-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Nomination &amp; Selection Process
+            </h2>
+
+        </div>
+
+
+        <div class="category-grid">
+
+            <div class="category-card">
+                <span class="process-num">01</span>
+                <h3>Nomination</h3>
+                <p>Anyone can nominate themselves or someone else for the award.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="process-num">02</span>
+                <h3>Submission</h3>
+                <p>Shortlisted nominees share details of their achievements, impact, and contributions.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="process-num">03</span>
+                <h3>Jury Review</h3>
+                <p>An independent jury reviews all submissions against defined evaluation criteria.</p>
+            </div>
+
+            <div class="category-card">
+                <span class="process-num">04</span>
+                <h3>Winner Announcement</h3>
+                <p>The top-rated candidates are selected as winners and recognized at the awards ceremony.</p>
+            </div>
+
+        </div>
+
+
+        <div class="view-all-wrap">
+
+            <a
+                href="{% url 'home' %}#tickets"
+                class="gradient-button"
+            >
+                Book Your Seat
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

@@ -1,0 +1,212 @@
+/* ========================================
+   CHECKOUT LAYOUT
+======================================== */
+
+.checkout-layout {
+
+    display: grid;
+
+    grid-template-columns: 1.8fr 1fr;
+
+    gap: 50px;
+
+    align-items: start;
+
+}
+
+
+.checkout-main h2 {
+
+    margin-bottom: 20px;
+
+    color: var(--text-white);
+
+    font-size: 22px;
+
+}
+
+
+.checkout-summary {
+
+    position: sticky;
+
+    top: 100px;
+
+}
+
+
+@media (max-width: 900px) {
+
+    .checkout-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .checkout-summary {
+
+        position: static;
+
+    }
+
+}
+
+
+/* ========================================
+   WORKSHOP PICKER (Conference + Workshop checkout)
+======================================== */
+
+.workshop-picker {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-top: 20px;
+
+}
+
+
+.workshop-pick-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 16px 20px;
+
+    border-radius: 14px;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+
+    background: rgba(255, 255, 255, 0.03);
+
+    cursor: pointer;
+
+    transition: border-color 0.2s ease, background 0.2s ease;
+
+}
+
+
+.workshop-pick-card.is-selected {
+
+    border-color: var(--secondary);
+
+    background: rgba(0, 217, 255, 0.06);
+
+}
+
+
+.workshop-pick-card.is-sold-out {
+
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+}
+
+
+.workshop-pick-card input[type="checkbox"] {
+
+    width: 18px;
+
+    height: 18px;
+
+    flex-shrink: 0;
+
+    accent-color: var(--secondary);
+
+}
+
+
+.workshop-pick-info {
+
+    flex: 1;
+
+}
+
+
+.workshop-pick-title {
+
+    margin-bottom: 4px;
+
+    color: white;
+
+    font-weight: 600;
+
+    font-size: 15px;
+
+}
+
+.workshop-pick-meta {
+
+    color: #9ba6c0;
+
+    font-size: 13px;
+}
+
+.workshop-pick-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+}
+
+.original-price {
+    color: #7f8aa3;
+    font-size: 13px;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+}
+
+.final-price {
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.discount-badge {
+    padding: 3px 8px;
+    border-radius: 50px;
+    background: rgba(0, 217, 255, 0.12);
+    color: var(--secondary);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+.workshop-pick-badge {
+
+    padding: 4px 12px;
+
+    border-radius: 50px;
+
+    background: rgba(217, 43, 75, 0.15);
+
+    color: #ff6b85;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+}
+
+
+.checkout-note {
+
+    margin-top: 16px;
+
+    color: #8f9ab5;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+}

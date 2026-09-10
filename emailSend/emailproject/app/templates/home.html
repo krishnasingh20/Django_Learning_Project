@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .pdf-modal {
+            display: none;
+
+            position: fixed;
+            z-index: 9999;
+
+            inset: 0;
+
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .pdf-modal-content {
+            position: relative;
+
+            width: 90%;
+            max-width: 450px;
+
+            padding: 30px;
+
+            border-radius: 16px;
+
+            background: white;
+        }
+
+        .pdf-modal-content h2 {
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-top: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+
+            border: 1px solid #ddd;
+            border-radius: 8px;
+
+            box-sizing: border-box;
+        }
+
+        .pdf-modal-content button[type="submit"] {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+
+            border: none;
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+
+            font-size: 28px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button type="button" id="openPdfForm">
+        Download PDF
+    </button>
+
+    <div id="pdfModal" class="pdf-modal">
+
+        <div class="pdf-modal-content">
+
+            <span id="closePdfForm" class="close-btn">&times;</span>
+
+            <h2>Download PDF</h2>
+
+            <p>
+                Enter your details and we will send the PDF to your email.
+            </p>
+
+            <form method="POST" action="{% url 'send_pdf' %}">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input type="tel" name="mobile" placeholder="Enter mobile number" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="Enter email address" required>
+                </div>
+
+                <button type="submit">
+                    Send PDF
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        const modal = document.getElementById("pdfModal");
+        const openBtn = document.getElementById("openPdfForm");
+        const closeBtn = document.getElementById("closePdfForm");
+
+        openBtn.onclick = function () {
+            modal.style.display = "flex";
+        };
+
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        };
+
+        window.onclick = function (event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1089 @@
+{% extends "dhs26/base.html" %}
+{% load static %}
+
+
+{% block title %}
+DataHack Summit 2026
+{% endblock %}
+
+
+{% block extra_css %}
+
+<link rel="stylesheet" href="{% static 'dhs26/css/home.css' %}">
+
+{% endblock %}
+
+
+
+
+{% block content %}
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <h1>
+
+                <span class="gradient-text">Human</span><span class="hero-x">x</span><span
+                    class="gradient-text">AI</span>
+
+            </h1>
+
+
+            <p class="hero-subtitle">
+
+                The Rise of the Agentic Operating Layer
+
+            </p>
+
+
+            <p class="hero-tagline">
+
+                The Future of Intelligence Starts Here
+
+            </p>
+
+
+            <p class="hero-meta">
+
+                August 05-08 2026 &bull; The Leela Bhartiya City Bengaluru, India
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <button class="gradient-button downloadbtn">
+
+                    Download Agenda
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-orb">
+
+        <div class="orb-blob orb-blob-1"></div>
+        <div class="orb-blob orb-blob-2"></div>
+        <div class="orb-blob orb-blob-3"></div>
+        <div class="orb-core"></div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS
+     NOTE: hardcoded placeholder numbers below (no "attendee count" /
+     "talk count" model exists in views.py yet). Swap these for real
+     context values once the backend exposes them, e.g.
+     {{ attendee_count }}+, {{ session_count }}+, {{ workshop_count }}+.
+-->
+
+<section class="content-section" style="padding-top: 0;">
+
+    <div class="container">
+
+        <div class="stats-strip">
+
+            <div class="stat-item">
+                <span class="stat-number">1400+</span>
+                <span class="stat-label">Attendees</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">75+</span>
+                <span class="stat-label">AI Talks</span>
+            </div>
+
+            <div class="stat-item">
+                <span class="stat-number">{{ workshops|length|default:"10" }}+</span>
+                <span class="stat-label">Workshops</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- AGENTIC OPERATING LAYER
+     NOTE: explainer copy is static site content, no model backs it.
+-->
+
+<section id="agentic-layer" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                What is an Agentic Operating Layer?
+            </h2>
+
+            <p>
+                The intelligent layer between Human and System
+            </p>
+
+        </div>
+
+
+        <div class="agentic-layer-grid">
+
+            <div class="agentic-layer-copy">
+
+                <p>
+                    For decades, software has waited for instructions. Every workflow, click,
+                    and configuration has depended on a human operating the system one step
+                    at a time.
+                </p>
+
+                <p>
+                    An Agentic Operating Layer changes that relationship. AI agents sit between
+                    human intent and the tools that get work done &mdash; understanding goals,
+                    coordinating across systems, and completing tasks end-to-end instead of
+                    waiting to be told what to click next.
+                </p>
+
+            </div>
+
+            <div class="agentic-layer-shift">
+
+                <div class="shift-card">
+                    <span class="shift-label">Before</span>
+                    <p>Manual software operation. Humans configure and orchestrate every step.</p>
+                </div>
+
+                <span class="shift-arrow">&rarr;</span>
+
+                <div class="shift-card is-highlighted">
+                    <span class="shift-label">After</span>
+                    <p>Agents understand intent, coordinate tools, and complete tasks end-to-end.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SPEAKERS -->
+
+<section id="speakers" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Meet the Speakers
+            </h2>
+
+            <p>
+                Learn from the Best in AI
+            </p>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+            {% for speaker in speakers %}
+            {% include "dhs26/partials/speaker_card.html" %}
+            {% endfor %}
+
+        </div>
+
+
+        <div class="view-all-wrap">
+
+            <a href="{% url 'speaker' %}" class="gradient-button">
+                View All Speakers
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SESSIONS -->
+
+<section id="sessions" class="dummy-section">
+
+    <div class="container">
+
+        <h2>
+            Explore the Sessions
+        </h2>
+
+        {% if sessions %}
+
+        <div class="cards-grid">
+
+            {% for session in sessions %}
+            {% include "dhs26/partials/session_card.html" %}
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+        <div class="view-all-wrap">
+
+            <a href="{% url 'sessions' %}" class="gradient-button">
+                View All Sessions
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SPONSORS -->
+
+<section id="sponsors" class="dummy-section">
+
+    <div class="container">
+
+        <h2>
+            Our Sponsors
+        </h2>
+
+        <div class="sponsor-grid">
+
+            {% for sponsor in sponsors %}
+            {% include "dhs26/partials/sponsor_tile.html" %}
+            {% endfor %}
+
+        </div>
+
+        <div class="view-all-wrap">
+
+            <a href="{% url 'sponsors' %}" class="gradient-button">
+                Know More
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- WHAT AWAITS YOU -->
+
+<section class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                What Awaits You at DataHack Summit
+            </h2>
+
+            <p>
+                Practical AI insights and hands-on learning for people building AI in the real world.
+            </p>
+
+        </div>
+
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">🎤</div>
+                <h3>Thought Provoking Keynotes</h3>
+                <p>Gain insights from AI pioneers as they break down the latest trends and share what it takes to tackle
+                    tomorrow's toughest challenges.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>AV Luminary Awards</h3>
+                <p>Celebrate the innovators and leaders in AI whose contributions are transforming the field but don't
+                    always get the spotlight.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🧪</div>
+                <h3>AI Exhibition</h3>
+                <p>Experience AI up close through interactive playgrounds and explore breakthrough products solving
+                    real-world problems.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <h3>Hands-on Workshops</h3>
+                <p>Dive into immersive, instructor-led sessions where you'll build GenAI and Agentic AI solutions and
+                    walk away with practical skills.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Hack Sessions</h3>
+                <p>Watch GenAI and Agentic AI in action through live demos and real-time problem solving that bring
+                    cutting-edge ideas to life.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Networking</h3>
+                <p>Connect with founders, researchers, practitioners, and leaders from the global AI community and spark
+                    new collaborations.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- WORKSHOPS -->
+
+<section id="workshops" class="dummy-section">
+
+    <div class="container">
+
+        <h2>
+            Hands-on AI Workshops
+        </h2>
+
+        {% if workshops %}
+
+        <div class="cards-grid">
+
+            {% for workshop in workshops %}
+            {% include "dhs26/partials/workshop_card.html" %}
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+        <div class="view-all-wrap">
+
+            <button type="button" class="gradient-button" data-modal-open="workshopDetailsModal">
+                Download Workshop Details
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- AGENDA
+     NOTE: This is a static structural placeholder that mirrors the live
+     site's tabbed day-by-day agenda. views.py has no Agenda/Schedule model
+     yet, so the day tabs and time-slot items below are hardcoded sample
+     content. To make this dynamic, add an AgendaItem model (day, time,
+     title, speaker, room, tag) and loop over it here instead.
+-->
+
+<section id="agenda" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Conference Agenda
+            </h2>
+
+            <p>
+                Four days packed with keynotes, workshops, and networking opportunities
+            </p>
+
+        </div>
+
+
+        <div class="agenda-tabs" data-agenda-tabs>
+
+            <button type="button" class="agenda-tab is-active" data-agenda-target="day1">Day 1</button>
+            <button type="button" class="agenda-tab" data-agenda-target="day2">Day 2</button>
+            <button type="button" class="agenda-tab" data-agenda-target="day3">Day 3</button>
+            <button type="button" class="agenda-tab" data-agenda-target="workshops">Workshops</button>
+
+        </div>
+
+
+        <div class="agenda-day is-active" id="day1">
+
+            <div class="agenda-item">
+                <span class="agenda-time">08:30 AM</span>
+                <div class="agenda-details">
+                    <h4>Registration</h4>
+                    <p>Lobby</p>
+                </div>
+                <span class="agenda-tag">Registration</span>
+            </div>
+
+            <div class="agenda-item">
+                <span class="agenda-time">10:00 AM</span>
+                <div class="agenda-details">
+                    <h4>Opening Remarks</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Opening</span>
+            </div>
+
+            <div class="agenda-item">
+                <span class="agenda-time">10:30 AM</span>
+                <div class="agenda-details">
+                    <h4>Opening Keynote</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Keynote</span>
+            </div>
+
+            <div class="agenda-item">
+                <span class="agenda-time">15:30 PM</span>
+                <div class="agenda-details">
+                    <h4>Power Talk</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Power Talk</span>
+            </div>
+
+        </div>
+
+
+        <div class="agenda-day" id="day2">
+
+            <div class="agenda-item">
+                <span class="agenda-time">09:30 AM</span>
+                <div class="agenda-details">
+                    <h4>Hack Session</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Hack Session</span>
+            </div>
+
+            <div class="agenda-item">
+                <span class="agenda-time">10:45 AM</span>
+                <div class="agenda-details">
+                    <h4>Keynote: Human-in-the-Loop</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Keynote</span>
+            </div>
+
+            <div class="agenda-item">
+                <span class="agenda-time">15:25 PM</span>
+                <div class="agenda-details">
+                    <h4>Hack Panel</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Hack Panel</span>
+            </div>
+
+        </div>
+
+
+        <div class="agenda-day" id="day3">
+
+            <div class="agenda-item">
+                <span class="agenda-time">10:50 AM</span>
+                <div class="agenda-details">
+                    <h4>Closing Keynote</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Keynote</span>
+            </div>
+
+            <div class="agenda-item">
+                <span class="agenda-time">17:10 PM</span>
+                <div class="agenda-details">
+                    <h4>Closing Remarks</h4>
+                    <p>Turing</p>
+                </div>
+                <span class="agenda-tag">Closing</span>
+            </div>
+
+        </div>
+
+
+        <div class="agenda-day" id="workshops">
+
+            {% if workshops %}
+
+            {% for workshop in workshops %}
+            <div class="agenda-item">
+                <span class="agenda-time">{{ workshop.start_time|time:"g:i A" }}</span>
+                <div class="agenda-details">
+                    <h4>{{ workshop.name }}</h4>
+                    <p>{{ workshop.location }}</p>
+                </div>
+                <span class="agenda-tag">Workshop</span>
+            </div>
+            {% endfor %}
+
+            {% else %}
+
+            <p style="color: #8f9ab5;">Workshop schedule will be announced soon.</p>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="view-all-wrap">
+
+            <button class="gradient-button downloadbtn">
+                Download Full Agenda
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- TICKETS
+     NOTE: prices/inclusions are hardcoded (no Ticket model in views.py).
+     The countdown targets the conference start date from the hero
+     (Aug 05 2026) — update data-countdown-target if that date changes.
+-->
+
+<section id="tickets" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Hurry! Last Few Seats Left!
+            </h2>
+
+        </div>
+
+
+        <div class="countdown-strip" data-countdown data-countdown-target="2026-08-05T00:00:00">
+
+            <div class="countdown-unit"><span class="num" data-cd="days">00</span><span class="lbl">Days</span></div>
+            <div class="countdown-unit"><span class="num" data-cd="hours">00</span><span class="lbl">Hrs</span></div>
+            <div class="countdown-unit"><span class="num" data-cd="minutes">00</span><span class="lbl">Min</span></div>
+            <div class="countdown-unit"><span class="num" data-cd="seconds">00</span><span class="lbl">Sec</span></div>
+
+        </div>
+
+
+        <div class="tickets-layout">
+
+            <div class="ticket-card">
+
+                <div class="ticket-name">Conference Only &bull; 05 - 07 August</div>
+
+                <div class="ticket-price">₹21,999</div>
+
+                <ul class="ticket-features">
+                    <li>Access to 75+ AI sessions</li>
+                    <li>Access to AI Exhibition</li>
+                    <li>Lunch (all 3 days)</li>
+                    <li>Delegate Kit</li>
+                    <li>Session Recordings</li>
+                </ul>
+
+                <a href="{% url 'checkout_conference' %}" class="gradient-button" style="text-align: center;">
+                    Book Your Seat
+                </a>
+
+            </div>
+
+
+            <div class="ticket-card is-featured">
+
+                <div class="ticket-name">Conference + Workshop &bull; 05 - 08 August</div>
+
+                <div class="ticket-price">₹34,999*</div>
+
+                <ul class="ticket-features">
+                    <li>Access to 75+ AI sessions</li>
+                    <li>Access to AI Exhibition</li>
+                    <li>Lunch (all 4 days)</li>
+                    <li>Delegate Kit</li>
+                    <li>Session Recordings</li>
+                    <li>Workshop Access</li>
+                    <li>Workshop Certificate</li>
+                </ul>
+
+                <a href="{% url 'checkout_conference_workshop' %}" class="gradient-button" style="text-align: center;">
+                    Book Your Seat
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <p style="margin-top: 18px; font-size: 13px; color: #6f7a94;">
+            * Price varies by workshop
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- VENUE
+     NOTE: venue name/address/image are hardcoded to match the live site's
+     copy since there's no Venue model in views.py. Move these into context
+     if the venue ever changes between editions.
+-->
+
+<section id="venue" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                A Grand Venue for a World-Class Experience
+            </h2>
+
+        </div>
+
+
+        <div class="venue-layout">
+
+            <img src="https://imgcdn.analyticsvidhya.com/dhs2026/venue.png" alt="The Leela Bhartiya City Bengaluru"
+                loading="lazy">
+
+            <div class="venue-info">
+
+                <h3>
+                    The Leela Bhartiya City Bengaluru
+                </h3>
+
+                <p>
+                    The first three days of the DataHack Summit conference will take place at
+                    The Leela Bhartiya City Bengaluru Convention Centre. With spacious conference
+                    halls, dedicated networking zones, and comfortable breakout spaces, the venue
+                    sets the stage for insightful sessions and valuable connections throughout
+                    the event.
+                </p>
+
+                <p style="font-size: 13px; color: #6f7a94;">
+                    Note: Workshop venues differ from the main conference venue. Please refer to
+                    your respective workshop pages for exact locations.
+                </p>
+
+                <p class="venue-address">
+                    Gate No. 2, 6/2, Thanisandra Main Road,<br>
+                    Tirumanahalli, Bengaluru 560064
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- GLIMPSE FROM THE PAST
+     NOTE: no gallery/photo model exists yet, so the tiles below are
+     placeholder tiles labelled by edition year rather than real photos.
+     The edition pills reuse the same past-edition URLs as the footer.
+-->
+
+<section id="glimpse" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Glimpse from the Past
+            </h2>
+
+            <p>
+                Moments from previous editions of DataHack Summit
+            </p>
+
+        </div>
+
+
+        <div class="edition-pills">
+
+            <a href="/datahacksummit-2025/" class="filter-chip">DHS 2025</a>
+            <a href="/datahacksummit-2024/" class="filter-chip">DHS 2024</a>
+            <a href="/dhs-2023/" class="filter-chip">DHS 2023</a>
+            <a href="/datahack-summit-2019/" class="filter-chip">DHS 2019</a>
+
+        </div>
+
+
+        <div class="gallery-grid">
+
+            <div class="gallery-tile"><span>2025</span></div>
+            <div class="gallery-tile"><span>2024</span></div>
+            <div class="gallery-tile"><span>2023</span></div>
+            <div class="gallery-tile"><span>2019</span></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- TOOLS YOU'LL EXPLORE
+     NOTE: static placeholder list of agentic AI tools/frameworks. No
+     Tool model exists in views.py yet.
+-->
+
+<section id="tools" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Tools You'll Explore at DHS 2026
+            </h2>
+
+            <p>
+                Hands-on with the frameworks and platforms powering agentic AI
+            </p>
+
+        </div>
+
+
+        <div class="tools-chip-grid">
+
+            <span class="tool-chip">LangChain</span>
+            <span class="tool-chip">LangGraph</span>
+            <span class="tool-chip">Claude</span>
+            <span class="tool-chip">OpenAI</span>
+            <span class="tool-chip">Hugging Face</span>
+            <span class="tool-chip">LlamaIndex</span>
+            <span class="tool-chip">CrewAI</span>
+            <span class="tool-chip">AutoGen</span>
+            <span class="tool-chip">Pinecone</span>
+            <span class="tool-chip">Weaviate</span>
+            <span class="tool-chip">Vertex AI</span>
+            <span class="tool-chip">Azure OpenAI</span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- CONTACT / FAQ
+     NOTE: sponsorship/ticketing emails are placeholders — swap for the
+     real inboxes before launch.
+-->
+
+<section id="contact" class="content-section">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <h2>
+                Connect with us today!
+            </h2>
+
+            <p>
+                Have a question? We're here to help.
+            </p>
+
+        </div>
+
+
+        <div class="contact-faq-layout">
+
+            <div class="contact-cards">
+
+                <div class="contact-card">
+
+                    <h3>For Sponsorship</h3>
+
+                    <p>
+                        Partner with DataHack Summit and put your brand in front of
+                        India's AI builders, researchers, and decision-makers.
+                    </p>
+
+                    <a href="mailto:sponsorship@analyticsvidhya.com" class="gradient-button">
+                        Contact Sponsorship Team
+                    </a>
+
+                </div>
+
+                <div class="contact-card">
+
+                    <h3>For Tickets</h3>
+
+                    <p>
+                        Questions about passes, group bookings, or invoices?
+                        Reach out to the ticketing desk.
+                    </p>
+
+                    <a href="mailto:support@analyticsvidhya.com" class="gradient-button">
+                        Contact Ticketing Team
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-list">
+
+                <h3>Frequently Asked Questions</h3>
+
+                <details class="faq-item">
+                    <summary>When and where is DataHack Summit 2026?</summary>
+                    <p>The conference runs August 05&ndash;08, 2026 at The Leela Bhartiya City Bengaluru, India.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What's included in my ticket?</summary>
+                    <p>Every ticket includes access to sessions, the AI Exhibition, lunch, a delegate kit, and session
+                        recordings. See the Tickets section above for the full breakdown by pass type.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Are workshops held at the same venue?</summary>
+                    <p>No &mdash; workshop venues differ from the main conference venue. Check your workshop's detail
+                        page for the exact location.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Will sessions be recorded?</summary>
+                    <p>Yes, session recordings are included with every ticket type.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How do I become a sponsor?</summary>
+                    <p>Reach out to the sponsorship team using the contact card on the left and we'll get back to you
+                        with tiers and availability.</p>
+                </details>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- WORKSHOP DETAILS MODAL
+     NOTE: submits via the .downloadWorkshopDetail fetch handler below
+     (real backend call to download_woprkshop_detail).
+-->
+
+{% include "dhs26/partials/lead_modal.html" with modal_id="workshopDetailsModal" modal_title="Workshop Details" modal_cta="Download Workshop Details" submit_class="downloadWorkshopDetail" %}
+
+
+{% endblock %}
+
+
+{% block extra_js %}
+
+<script>
+
+    // download agenda event handling
+    document.addEventListener("click", async (event) => {
+        const buttton = event.target.closest(".downloadbtn");
+
+        if(!buttton) {
+            return;
+        }
+
+        const response = await fetch("{% url 'download_file' %}");
+
+        if (!response.ok) {
+            alert("Download failed");
+            return;
+        }
+
+        const blob = await response.blob();
+
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "DHS26_Agenda.pdf";
+
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+        URL.revokeObjectURL(url);
+    });
+
+    
+    // Agenda tab switching
+    document.addEventListener('DOMContentLoaded', function () {
+
+        var tabsWrap = document.querySelector('[data-agenda-tabs]');
+
+        if (tabsWrap) {
+
+            tabsWrap.addEventListener('click', function (e) {
+
+                var btn = e.target.closest('.agenda-tab');
+                if (!btn) return;
+
+                tabsWrap.querySelectorAll('.agenda-tab').forEach(function (t) {
+                    t.classList.remove('is-active');
+                });
+                btn.classList.add('is-active');
+
+                document.querySelectorAll('.agenda-day').forEach(function (d) {
+                    d.classList.remove('is-active');
+                });
+
+                var target = document.getElementById(btn.dataset.agendaTarget);
+                if (target) target.classList.add('is-active');
+
+            });
+
+        }
+
+
+        // Countdown timer
+        var cd = document.querySelector('[data-countdown]');
+
+        if (cd) {
+
+            var targetDate = new Date(cd.dataset.countdownTarget).getTime();
+
+            var dEl = cd.querySelector('[data-cd="days"]');
+            var hEl = cd.querySelector('[data-cd="hours"]');
+            var mEl = cd.querySelector('[data-cd="minutes"]');
+            var sEl = cd.querySelector('[data-cd="seconds"]');
+
+            function pad(n) {
+                return String(n).padStart(2, '0');
+            }
+
+            function tick() {
+
+                var diff = targetDate - Date.now();
+
+                if (diff <= 0) {
+                    dEl.textContent = hEl.textContent = mEl.textContent = sEl.textContent = '00';
+                    clearInterval(timer);
+                    return;
+                }
+
+                var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                var minutes = Math.floor((diff / (1000 * 60)) % 60);
+                var seconds = Math.floor((diff / 1000) % 60);
+
+                dEl.textContent = pad(days);
+                hEl.textContent = pad(hours);
+                mEl.textContent = pad(minutes);
+                sEl.textContent = pad(seconds);
+
+            }
+
+            tick();
+            var timer = setInterval(tick, 1000);
+
+        }
+
+    });
+
+    // Generic modal open/close/reset logic lives in dhs26/js/lead-modal.js
+    // (loaded site-wide via base.html). Only the backend-specific submit
+    // handler for this page's Workshop Details modal lives here.
+
+    //sending worhsop detail through fetch request via mail
+    document.addEventListener("click", async (event) => {
+
+        const button  = event.target.closest(".downloadWorkshopDetail");
+
+        if(!button) {
+            return;
+        }
+        event.preventDefault();
+
+        const form = button.closest("form");
+        const formData = new FormData(form);
+        const modal = button.closest("dialog");
+
+        try {
+            await fetch("{% url 'download_woprkshop_detail' %}", {
+                method: "POST",
+                body: formData
+            });
+        } finally {
+            if (modal) {
+                modal.close();
+            }
+        }
+    });
+
+    document.addEventListener("click", async (event) => {
+        const button = event.target.closest(".emailAgenda");
+
+        if(!button) {
+            return;
+        }
+
+        event.preventDefault();
+
+        const form = button.closest("form");
+        const formData = new FormData(form);
+        const modal = button.closest("dialog");
+
+        try {
+            await fetch("{% url 'emailAgenda' %}", {
+                method: "POST",
+                body: formData
+            })
+        }
+        finally {
+            if(modal) {
+                modal.close();
+            }
+        }
+    })
+
+</script>
+
+{% endblock %}

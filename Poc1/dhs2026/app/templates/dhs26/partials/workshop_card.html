@@ -1,0 +1,121 @@
+{% load static %}
+
+<div class="workshop-card{% if workshop.is_sold_out %} is-sold-out{% endif %}">
+
+    <a
+        href="{% url 'workshop_detail' workshop.id %}"
+        class="workshop-card-link"
+    >
+
+        <div class="workshop-thumb">
+
+            {% if workshop.image %}
+
+            <img
+                class="workshop-thumb-img"
+                src="{% static 'image/' %}{{ workshop.image }}"
+                alt="{{ workshop.name }}"
+                loading="lazy"
+            >
+
+            {% endif %}
+
+            <span>
+                {{ workshop.date|date:"d M Y" }}
+            </span>
+
+            <span>
+                {{ workshop.start_time|time:"g:i A" }} &ndash; {{ workshop.end_time|time:"g:i A" }}
+            </span>
+
+            {% if workshop.is_sold_out %}
+
+            <span class="sold-out-stamp">
+                Sold Out
+            </span>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="workshop-body">
+
+            <div class="workshop-title">
+                {{ workshop.name }}
+            </div>
+
+
+            <div class="workshop-meta">
+
+                <span>
+
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/>
+                        <circle cx="12" cy="9" r="2.5"/>
+                    </svg>
+
+                    {{ workshop.location }}
+
+                </span>
+
+            </div>
+
+
+            <div class="workshop-instructors">
+
+                {% with instructor=workshop.instructors.first %}
+
+                <div class="mini-person">
+
+                    <img
+                        src="{{ instructor.image_url }}"
+                        alt="{{ instructor.name }}"
+                        loading="lazy"
+                    >
+
+                    <div class="mini-person-info">
+
+                        <div class="name">
+                            {{ instructor.name }}
+                        </div>
+
+                        <div class="role">
+                            {{ instructor.designation }}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                {% endwith %}
+
+            </div>
+
+        </div>
+
+    </a>
+
+
+    <div class="workshop-card-footer">
+
+        {% if workshop.is_sold_out %}
+
+        <span class="workshop-buy-disabled">
+            Sold Out
+        </span>
+
+        {% else %}
+
+        <a
+            href="{% url 'checkout_buy_workshop' workshop.id %}"
+            class="gradient-button workshop-buy-btn"
+        >
+            Buy Ticket
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</div>
